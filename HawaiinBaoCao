@@ -1,0 +1,108 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cctype>
+using namespace std;
+
+char Dictionary[] = {'p', 'k', 'h', 'l', 'm', 'n', 'w', 'a', 'i', 'u', 'e', 'o',' ','\''};
+int sizeofDictionary = sizeof(Dictionary)/sizeof(Dictionary[0]);
+bool valid = true;
+string result;
+int main() {
+    string input;
+    getline(cin, input);
+    vector<char> arr(input.begin(), input.end());
+    //Check valid
+    for(int i = 0; i < arr.size(); i++){
+        for(int y = 0; i<sizeofDictionary; i++){
+            if(arr[i] != Dictionary[y]){
+                valid = false;
+            }
+        }
+    }
+    if(valid){
+    //Doi phu am
+    for(int i = 0; i < arr.size(); i++){
+        if(arr[i] == 'w'){
+            if(arr[i-1] == 'i' || arr[i-1] == 'e'){
+                arr[i] == 'v';                
+                }               
+            }  
+        }
+    //Doi nguyen am/ Nhom nguyen am
+    for(size_t i = 0; i < arr.size(); i++){
+        if(arr[i] == 'a'){
+            if(arr[i+1] == 'i' || arr[i+1] == 'e' && i+1 < arr.size()){
+               result += "eye";
+               i++;
+                }
+            else if(arr[i+1] == 'o' || arr[i+1] == 'u' && i+1 < arr.size()){
+                    result += "ow";
+                    i++;
+                }
+            else{
+                result += "ah";
+                }
+        }
+        else if(arr[i] == 'e'){
+            if(arr[i+1] == 'i' && i+1 < arr.size()){
+              result += "ay";
+               i++;
+                }
+            else if(arr[i+1] == 'u' && i+1 < arr.size()){
+               result += "eh-oo";
+               i++;
+                }
+            else {
+                result += "eh";
+            }
+        
+        }
+        else if(arr[i] == 'i'){
+            if(arr[i+1] == 'u' && i+1 < arr.size()){
+               result += "ew";
+               i++;
+                }
+            else {
+                result += "ee";
+            }
+        
+        }
+        else if(arr[i] == 'o'){
+            if(arr[i+1] == 'i' && i+1 < arr.size()){
+              result += "oy";
+               i++;
+                }
+            else if(arr[i+1] == 'u' && i+1 < arr.size()){
+               result += "ow";
+               i++;
+                }
+            else {
+                result += "oh";
+            }
+        
+        }
+        else if(arr[i] == 'u'){
+            if(arr[i+1] == 'i' && i+1 < arr.size()){
+              result += "ooey";
+               i++;
+                }
+            else {
+                result += "oo";
+            }
+        
+        }
+        if(arr[i+2] != ' ' || arr[i+2] != '\'' && i+2 < arr.size()){
+            result += "-";
+            }
+        else{
+            result += arr[i];
+        }
+        }
+        
+    }
+    
+    else{
+        cout << input << " contains invalid characters." << endl;
+    }
+}
